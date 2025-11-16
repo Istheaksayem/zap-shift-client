@@ -11,22 +11,22 @@ import starPeople from '../../../../assets/brands/start_people.png'
 
 const Brands = () => {
     return (
-      
-     <div>
-        <h2 className='text-secondary text-center font-semibold mb-2'>
-            We've helped thousands of sales teams
-        </h2>
-          <Marquee>
-           <div className='flex gap-10 mb-2 items-center flex-wrap'>
-             <img src={amazon} alt="" />
-            <img src={casio} alt="" />
-            <img src={moonstar} alt="" />
-            <img src={randstad} alt="" />
-            <img src={star} alt="" />
-            <img src={starPeople} alt="" />
-           </div>
-       </Marquee>
-     </div>
+
+        <div>
+            <h2 className='text-secondary text-center font-semibold mb-2'>
+                We've helped thousands of sales teams
+            </h2>
+            <Marquee>
+                <div className='flex gap-10 mb-2 items-center '>
+                    <img src={casio} alt="" />
+                    <img src={amazon} alt="" />
+                    <img src={moonstar} alt="" />
+                    <img src={randstad} alt="" />
+                    <img src={star} alt="" />
+                    <img src={starPeople} alt="" />
+                </div>
+            </Marquee>
+        </div>
     );
 };
 
