@@ -3,7 +3,7 @@ import React from 'react';
 import { FaTruck, } from "react-icons/fa";
 import ServicesCard from '../ServicesCard/ServicesCard';
 import serviceImg from '../../assets/service.png'
-
+console.log(serviceImg)
 const services = [
     {
         id: 1,
@@ -15,13 +15,13 @@ const services = [
         id: 2,
         image: <img src={serviceImg} alt="" />,
         title: "Express Delivery",
-        desc: "Fast parcel delivery within 24–72 hours.",
+        desc: "We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.",
     },
     {
         id: 3,
         image: <img src={serviceImg} alt="" />,
         title: "Express Delivery",
-        desc: "Fast parcel delivery within 24–72 hours.",
+        desc: "We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.",
     },
     {
         id: 4,
@@ -58,7 +58,7 @@ const OurServices = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {services.map(service => <ServicesCard
                     key={service.id}
-                    icon={service.icon}
+                    image={service.image}
                     title={service.title}
                     desc={service.desc}
 
