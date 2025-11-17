@@ -9,7 +9,7 @@ const ReviewCard = ({review}) => {
       <FaQuoteLeft className="text-4xl text-primary/40 mb-3" />
 
       {/* Description */}
-      <p className="text-gray-600 leading-relaxed">
+      <p className="mb-4">
        {testimonial}
       </p>
 
