@@ -1,16 +1,29 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import UseAuth from '../../../Hooks/UseAuth';
+import { Link } from 'react-router';
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { registerUser } = UseAuth()
 
     const handleRegistration = (data) => {
         console.log("After register", data)
+        registerUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit(handleRegistration)}>
+        <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+            <h3 className="text-3xl  font-bold">Welcome to Zap shift</h3>
+            <p className="font-semibold">Register with ZapShift</p>
+            <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
                 <fieldset className="fieldset">
                     <label className="label">Email</label>
                     <input type="email" {...register("email", { required: true })} className="input" placeholder="Email" />
@@ -22,7 +35,12 @@ const Register = () => {
                     <input type="password"  {...register("password", {
                         required: true,
                         minLength: 6,
-                        pattern:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&^#()\-_=+{}\[\]|;:'",.<>\/]).{6,}$/
+                        // eslint-disable-next-line no-useless-escape
+                        pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&^#()\-_=+{}\[\]|;:'",.<>\/]).{6,}$/
+                        // pattern: {
+                        //     value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&^#()\-_=+{}\[\]|;:'",.<>/]).{6,}$/,
+                        //     message: "Password must meet complexity requirements"
+                        // }
                     })} className="input" placeholder="Password" />
 
 
@@ -33,13 +51,15 @@ const Register = () => {
                         errors.password?.type === "minLength" && <p className='text-red-500'>password must be 6 characters</p>
                     }
                     {
-                        errors.password?.type==="pattern" && <p className='text-red-500'>password at least one uppercase ,at least one lowercase ,at least one number at least one special characters</p>
+                        errors.password?.type === "pattern" && <p className='text-red-500'>password at least one uppercase ,at least one lowercase ,at least one number at least one special characters</p>
 
                     }
 
                     <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4">Login</button>
+                    <button className="btn btn-neutral mt-4">Register</button>
+                    <p>Already have an account? <Link to="/login" className='text-blue-400'>Login</Link></p>
                 </fieldset>
+
             </form>
         </div>
     );
