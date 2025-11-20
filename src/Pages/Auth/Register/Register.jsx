@@ -10,7 +10,7 @@ const Register = () => {
     const { registerUser } = UseAuth()
 
     const handleRegistration = (data) => {
-        console.log("After register", data)
+        console.log("After register", data.photo[0])
         registerUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
@@ -22,14 +22,44 @@ const Register = () => {
     }
     return (
         <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-            <h3 className="text-3xl  font-bold">Welcome to Zap shift</h3>
+            <h3 className="text-3xl  font-bold">Create An Account</h3>
             <p className="font-semibold">Register with ZapShift</p>
             <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
                 <fieldset className="fieldset">
+                    {/* Email field */}
                     <label className="label">Email</label>
-                    <input type="email" {...register("email", { required: true })} className="input" placeholder="Email" />
+                    <input
+                     type="email" 
+                     {...register("email", 
+                     { required: true })} 
+                     className="input"
+                      placeholder="Email" 
+                      />
 
                     {errors.email?.type === "required" && <p className='text-red-500'>Email is required</p>}
+                    {/* name field */}
+                    <label className="label">name</label>
+                    <input
+                     type="text" 
+                     {...register("name", 
+                     { required: true })} 
+                     className="input"
+                      placeholder="Your name" 
+                      />
+
+                    {errors.name?.type === "required" && <p className='text-red-500'>Name is required</p>}
+                    {/* image field */}
+                    <label className="label">photo</label>
+                    {/* <input type="file" className="file-input file-input-secondary" /> */}
+                    <input
+                     type="file" 
+                     {...register("photo", 
+                     { required: true })} 
+                     className="file-input file-input-info"
+                      placeholder="Your photo" 
+                      />
+
+                    {errors.name?.type === "required" && <p className='text-red-500'>Name is required</p>}
 
                     {/* password */}
                     <label className="label">Password</label>
