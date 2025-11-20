@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../Hooks/UseAuth';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -45,6 +46,7 @@ const Login = () => {
                     <p className="">New to Zap shift? <Link to="/register" className='text-blue-400'>Register</Link></p>
                 </fieldset>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

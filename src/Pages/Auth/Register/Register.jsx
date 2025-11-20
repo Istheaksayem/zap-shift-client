@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../Hooks/UseAuth';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
 
@@ -61,6 +62,7 @@ const Register = () => {
                 </fieldset>
 
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
