@@ -7,6 +7,8 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
+import Rider from "../Pages/Rider/Rider";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +25,10 @@ export const router = createBrowserRouter([
                 path:'coverage',
                 Component:Coverage,
                 loader:() =>fetch('/warehouses.json').then(res =>res.json())
+            },
+            {
+                path:'rider',
+                element:<PrivateRoute><Rider></Rider></PrivateRoute>
             },
             {
                 path:'/aboutUs',
