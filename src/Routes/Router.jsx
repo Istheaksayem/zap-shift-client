@@ -20,46 +20,47 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component:Home
+                Component: Home
 
             },
             {
-                path:'send-parcel',
-                element:<PrivateRoute><SendParcel></SendParcel></PrivateRoute>
-                
+                path: 'send-parcel',
+                element: <PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
+                loader: () => fetch('/warehouses.json').then(res => res.json())
+
             },
             {
-                path:'coverage',
-                Component:Coverage,
-                loader:() =>fetch('/warehouses.json').then(res =>res.json())
+                path: 'coverage',
+                Component: Coverage,
+                loader: () => fetch('/warehouses.json').then(res => res.json())
             },
             {
-                path:'rider',
-                element:<PrivateRoute><Rider></Rider></PrivateRoute>
+                path: 'rider',
+                element: <PrivateRoute><Rider></Rider></PrivateRoute>
             },
             {
-                path:'/aboutUs',
-                Component:AboutUs
+                path: '/aboutUs',
+                Component: AboutUs
             },
             {
-                path:'/*',
-                Component:Error404
+                path: '/*',
+                Component: Error404
             },
-            
-           
+
+
         ]
     },
     {
-        path:'/',
-        Component:AuthLayout,
-        children:[
+        path: '/',
+        Component: AuthLayout,
+        children: [
             {
-                path:'login',
-                Component:Login
+                path: 'login',
+                Component: Login
             },
             {
-                path:'register',
-                Component:Register
+                path: 'register',
+                Component: Register
             }
         ]
     }
