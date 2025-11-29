@@ -2,9 +2,22 @@ import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import UseAuth from '../../Hooks/UseAuth';
 
 const SendParcel = () => {
-    const { register, handleSubmit, control, formState: { errors } } = useForm()
+    const {
+        register,
+        handleSubmit,
+        control,
+        // formState: { errors }
+    } = useForm()
+
+    const { user } = UseAuth()
+
+    const axiosSecure = useAxiosSecure();
+
+
     const serviceCenters = useLoaderData();
     // console.log(serviceCenters)
     const regionsDuplicate = serviceCenters.map(c => c.region)
@@ -62,11 +75,18 @@ const SendParcel = () => {
             confirmButtonText: "I agree!"
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+
+                // save the parcel info to the database 
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saving parcel', res.data)
+                    })
+
+                // Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your file has been deleted.",
+                //     icon: "success"
+                // });
             }
         });
 
@@ -77,7 +97,7 @@ const SendParcel = () => {
     return (
         <div>
             <h2 className="text-5xl font-bold">Send A Parcel</h2>
-            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black'>
+            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black overflow-x-hidden'>
                 {/* document */}
                 <div>
                     <label className="label mr-4">
@@ -115,11 +135,19 @@ const SendParcel = () => {
                             {/* sender Name  */}
 
                             <label className="label">Sender Name</label>
-                            <input type="text" {...register('senderName')} className="input w-full" placeholder="Sender Name" />
+                            <input 
+                            type="text" 
+                            {...register('senderName')}
+                            defaultValue={user?.displayName}
+                            className="input w-full" placeholder="Sender Name" />
                             {/* sender Email  */}
 
                             <label className="label">Sender Email</label>
-                            <input type="email" {...register('senderEmail')} className="input w-full" placeholder="Sender Email" />
+                            <input
+                             type="email" 
+                             {...register('senderEmail')}
+                            defaultValue={user?.email}
+                             className="input w-full" placeholder="Sender Email" />
                             {/* sender Region */}
                             <fieldset className="fieldset">
                                 <legend className="fieldset-legend">Sender Region</legend>

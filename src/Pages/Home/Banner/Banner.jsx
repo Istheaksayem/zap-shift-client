@@ -41,7 +41,7 @@ const Banner = () => {
 
             </div>
 
-               <div className='relative'>
+            <div className='relative'>
                 <img src={bannerImg2} />
 
                 {/* Buttons Wrapper */}
