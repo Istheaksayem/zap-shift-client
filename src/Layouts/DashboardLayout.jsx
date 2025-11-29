@@ -1,4 +1,5 @@
 import React from 'react';
+import { CiDeliveryTruck } from 'react-icons/ci';
 import { Link, NavLink, Outlet } from 'react-router';
 
 const DashboardLayout = () => {
@@ -15,8 +16,8 @@ const DashboardLayout = () => {
                     <div className="px-4">Zap shift Dashboard</div>
                 </nav>
                 {/* Page content here */}
-            <Outlet></Outlet>
-                
+                <Outlet></Outlet>
+
             </div>
 
             <div className="drawer-side is-drawer-close:overflow-visible">
@@ -35,7 +36,11 @@ const DashboardLayout = () => {
 
                         {/* My dashboard link  */}
                         <li>
-                            <NavLink to="/dashboard/my-parcels">My parcels</NavLink>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="MyParcels" to="/dashboard/my-parcels">
+                                <CiDeliveryTruck />
+
+                                <span className="is-drawer-close:hidden">My parcels</span>
+                            </NavLink>
                         </li>
 
                         {/* List item */}
