@@ -12,6 +12,7 @@ const PaymentHistory = () => {
             const res = await axiosSecure.get(`payments?email=${user.email}`)
             return res.data;
         }
+        
     })
     return (
         <div>
