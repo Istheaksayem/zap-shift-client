@@ -20,9 +20,9 @@ const SendParcel = () => {
 
 
     const serviceCenters = useLoaderData();
-    // console.log(serviceCenters)
+   
     const regionsDuplicate = serviceCenters.map(c => c.region)
-    console.log(regionsDuplicate)
+    
     const regions = [...new Set(regionsDuplicate)]
     // console.log(regions)
     const senderRegion = useWatch({ control, name: 'senderRegion' })

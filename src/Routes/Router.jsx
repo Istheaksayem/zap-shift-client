@@ -42,7 +42,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'rider',
-                element: <PrivateRoute><Rider></Rider></PrivateRoute>
+                element: <PrivateRoute><Rider></Rider></PrivateRoute>,
+                loader: () => fetch('/warehouses.json').then(res => res.json())
+
             },
             {
                 path: '/aboutUs',
@@ -71,28 +73,28 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path:'dashboard',
-        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        children:[
+        path: 'dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
             {
-                path:'my-parcels',
-                Component:MyParcels
+                path: 'my-parcels',
+                Component: MyParcels
             },
             {
-                path:'payment-history',
-                Component:PaymentHistory
+                path: 'payment-history',
+                Component: PaymentHistory
             },
             {
-                path:'payment/:parcelId',
-                Component:Payment
+                path: 'payment/:parcelId',
+                Component: Payment
             },
             {
-                path:'payment-success',
-                Component:PaymentSuccess
+                path: 'payment-success',
+                Component: PaymentSuccess
             },
             {
-                path:'payment-cancelled',
-                Component:PaymentCancelled
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
             }
         ]
 
